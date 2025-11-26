@@ -233,8 +233,8 @@ export default function KaplanCard() {
 
           <div className="flex-grow" />
 
-          {/* Call to Action Area - Hidden on mobile because of sticky bar */}
-          <div className="hidden md:block mt-6 pt-6 border-t border-slate-100">
+          {/* Call to Action Area - Visible on all screens now */}
+          <div className="mt-6 pt-6 border-t border-slate-100">
             <p className="text-slate-600 text-sm mb-4 font-medium">
               Have questions about life in Gold Coast?
             </p>
