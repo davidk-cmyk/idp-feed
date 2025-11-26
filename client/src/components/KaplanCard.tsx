@@ -205,7 +205,7 @@ export default function KaplanCard() {
           <p className="text-slate-600 text-sm mb-4 font-medium">
             Have questions about life in Gold Coast?
           </p>
-          <Button className="w-full h-14 md:h-12 text-base md:text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-sm rounded-lg gap-2 active:scale-[0.98] transition-transform">
+          <Button className="w-full h-12 md:h-11 text-base font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-none rounded-full gap-2 active:scale-[0.98] transition-all">
             <MessageCircle className="h-5 w-5" />
             Ask me a question
           </Button>
