@@ -73,7 +73,7 @@ export default function KaplanCard() {
           </p>
           <div className="mb-4">
              <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-2 flex items-center gap-1">
-               Explore related topics
+               Like what you see? Explore similar content using the tags below
              </p>
              <div className="flex flex-wrap gap-2">
                 <Badge 
