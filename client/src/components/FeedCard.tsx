@@ -1,8 +1,9 @@
-import { Heart } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 interface FeedCardProps {
   id: string;
@@ -56,30 +57,30 @@ export default function FeedCard({ id, author, school, time, image, title, avata
 
       {/* Media Area */}
       <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden group">
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
+        <Link href={`/post/${id}`} className="cursor-pointer block h-full">
+          <img 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />
 
-        {/* Content Overlay */}
-        <div className="absolute bottom-0 left-0 p-4 w-full">
-          <h3 className="text-white font-bold text-sm leading-snug line-clamp-2 mb-2 drop-shadow-sm">
-            {title}
-          </h3>
-          <Link href={`/post/${id}`}>
+          {/* Content Overlay */}
+          <div className="absolute bottom-0 left-0 p-4 w-full">
+            <h3 className="text-white font-bold text-sm leading-snug line-clamp-2 mb-2 drop-shadow-sm">
+              {title}
+            </h3>
             <span className="text-[11px] font-semibold text-blue-300 hover:text-blue-200 cursor-pointer">
               Read more
             </span>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center">
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
         <motion.button
           onClick={handleLike}
           whileTap={{ scale: 0.95 }}
@@ -110,17 +111,17 @@ export default function FeedCard({ id, author, school, time, image, title, avata
               </motion.div>
             )}
           </AnimatePresence>
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-semibold whitespace-nowrap">
             {liked ? "Liked!" : "Like this post"}
           </span>
         </motion.button>
         
-        {/* Optional: Show count separately if needed, or just hide it to match screenshot exactly */}
-        {likeCount > 0 && (
-          <span className="ml-auto text-xs font-medium text-slate-400">
-            {likeCount} likes
-          </span>
-        )}
+        <Link href={`/post/${id}`}>
+          <Button variant="ghost" size="sm" className="text-slate-600 hover:text-[#3b66f5] hover:bg-blue-50 font-semibold gap-1 rounded-full pr-2">
+            Read full story
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </Link>
       </div>
     </motion.div>
   );
