@@ -24,24 +24,6 @@ export default function Home() {
           </Button>
         </div>
 
-        {/* Post Author Header */}
-        <div className="w-full flex items-center gap-3 mb-4 pl-1">
-          <Avatar className="h-10 w-10 border border-slate-200 shadow-sm">
-            <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
-            <AvatarFallback>AS</AvatarFallback>
-          </Avatar>
-          <div className="flex flex-col">
-            <span className="text-sm font-bold text-slate-900 dark:text-white leading-none">
-              Aastha
-            </span>
-            <span className="text-xs font-semibold text-[#3b66f5] mt-0.5">
-              Kaplan Business School
-            </span>
-            <span className="text-[11px] text-slate-500 mt-0.5">
-              9 hours ago
-            </span>
-          </div>
-        </div>
 
         {/* Feed Context */}
         <div className="w-full space-y-6">
