@@ -118,7 +118,7 @@ export default function FeedCard({ id, author, school, time, image, title, avata
         
         <Link href={`/post/${id}`}>
           <Button variant="ghost" size="sm" className="text-slate-600 hover:text-[#3b66f5] hover:bg-blue-50 font-semibold gap-1 rounded-full pr-2">
-            Read full story
+            View full post
             <ArrowRight className="h-4 w-4" />
           </Button>
         </Link>
