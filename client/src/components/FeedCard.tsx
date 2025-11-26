@@ -1,4 +1,4 @@
-import { Heart, MessageCircle } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -117,13 +117,13 @@ export default function FeedCard({ id, author, school, time, image, title, avata
         </motion.button>
         
         <Link href={`/post/${id}`}>
-          <Button 
-            size="sm" 
-            className="bg-[#3b66f5] hover:bg-[#2f52c4] text-white font-semibold gap-1.5 rounded-full px-4 shadow-sm"
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-blue-50 text-blue-600 hover:bg-blue-100 hover:border-blue-200 transition-all duration-200"
           >
-            <MessageCircle className="h-4 w-4" />
-            Ask {author} a question
-          </Button>
+            <span className="text-sm font-semibold">Read full story</span>
+            <ArrowRight className="h-4 w-4" />
+          </motion.button>
         </Link>
       </div>
     </motion.div>
