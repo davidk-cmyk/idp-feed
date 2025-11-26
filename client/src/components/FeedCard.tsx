@@ -79,14 +79,14 @@ export default function FeedCard({ id, author, school, time, image, title, avata
       </div>
 
       {/* Footer */}
-      <div className="p-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center">
         <motion.button
           onClick={handleLike}
-          whileTap={{ scale: 0.9 }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 ${
+          whileTap={{ scale: 0.95 }}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 ${
             liked 
-              ? "bg-red-50 text-red-600 border border-red-100" 
-              : "text-slate-500 hover:bg-slate-50 border border-transparent hover:border-slate-100"
+              ? "bg-red-50 text-red-600 border-red-100" 
+              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
           }`}
         >
           <AnimatePresence mode="wait">
@@ -110,10 +110,17 @@ export default function FeedCard({ id, author, school, time, image, title, avata
               </motion.div>
             )}
           </AnimatePresence>
-          <span className="text-xs font-medium">
-            {likeCount > 0 ? `${likeCount} Likes` : liked ? "Liked" : "Like"}
+          <span className="text-sm font-semibold">
+            {liked ? "Liked!" : "Like this post"}
           </span>
         </motion.button>
+        
+        {/* Optional: Show count separately if needed, or just hide it to match screenshot exactly */}
+        {likeCount > 0 && (
+          <span className="ml-auto text-xs font-medium text-slate-400">
+            {likeCount} likes
+          </span>
+        )}
       </div>
     </motion.div>
   );
