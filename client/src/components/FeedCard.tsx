@@ -1,7 +1,8 @@
 import { Heart } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface FeedCardProps {
   id: string;
@@ -14,7 +15,20 @@ interface FeedCardProps {
   likes: number;
 }
 
-export default function FeedCard({ id, author, school, time, image, title, avatarUrl, likes }: FeedCardProps) {
+export default function FeedCard({ id, author, school, time, image, title, avatarUrl, likes: initialLikes }: FeedCardProps) {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(initialLikes);
+
+  const handleLike = () => {
+    if (liked) {
+      setLikeCount(prev => prev - 1);
+      setLiked(false);
+    } else {
+      setLikeCount(prev => prev + 1);
+      setLiked(true);
+    }
+  };
+
   return (
     <motion.div 
       whileHover={{ y: -4 }}
@@ -65,11 +79,41 @@ export default function FeedCard({ id, author, school, time, image, title, avata
       </div>
 
       {/* Footer */}
-      <div className="p-3 border-t border-slate-100 dark:border-slate-800">
-        <button className="flex items-center gap-1.5 text-slate-500 hover:text-red-500 transition-colors">
-          <Heart className="h-4 w-4" />
-          <span className="text-xs font-medium">{likes} Likes</span>
-        </button>
+      <div className="p-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <motion.button
+          onClick={handleLike}
+          whileTap={{ scale: 0.9 }}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 ${
+            liked 
+              ? "bg-red-50 text-red-600 border border-red-100" 
+              : "text-slate-500 hover:bg-slate-50 border border-transparent hover:border-slate-100"
+          }`}
+        >
+          <AnimatePresence mode="wait">
+            {liked ? (
+              <motion.div
+                key="filled"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+              >
+                <Heart className="h-4 w-4 fill-current" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="outline"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+              >
+                <Heart className="h-4 w-4" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <span className="text-xs font-medium">
+            {likeCount > 0 ? `${likeCount} Likes` : liked ? "Liked" : "Like"}
+          </span>
+        </motion.button>
       </div>
     </motion.div>
   );
