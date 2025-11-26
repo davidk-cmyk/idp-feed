@@ -1,4 +1,4 @@
-import { Heart, ArrowRight } from "lucide-react";
+import { Heart, MessageCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
@@ -117,9 +117,12 @@ export default function FeedCard({ id, author, school, time, image, title, avata
         </motion.button>
         
         <Link href={`/post/${id}`}>
-          <Button variant="ghost" size="sm" className="text-slate-600 hover:text-[#3b66f5] hover:bg-blue-50 font-semibold gap-1 rounded-full pr-2">
-            View full post
-            <ArrowRight className="h-4 w-4" />
+          <Button 
+            size="sm" 
+            className="bg-[#3b66f5] hover:bg-[#2f52c4] text-white font-semibold gap-1.5 rounded-full px-4 shadow-sm"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Ask {author} a question
           </Button>
         </Link>
       </div>
