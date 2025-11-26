@@ -45,16 +45,8 @@ export default function KaplanCard() {
             </Button>
           </div>
 
-          {/* Content Overlay */}
-          <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full text-white z-20">
-            <Badge variant="secondary" className="mb-3 bg-primary/90 backdrop-blur-sm text-white border-none font-medium tracking-wide px-3 py-1">
-              GOLD COAST CAMPUS
-            </Badge>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold leading-tight mb-2 drop-shadow-lg">
-              "My name's Aastha and I'm studying Business Analytics"
-            </h2>
-          </div>
-
+          {/* Content Overlay - Removed based on request */}
+          
           {/* Top Right Action */}
           <div className="absolute top-4 right-4 z-20">
             <Button size="icon" variant="ghost" className="text-white hover:bg-white/20 rounded-full">
@@ -65,10 +57,6 @@ export default function KaplanCard() {
 
         {/* Post Description Area - "About the Content" */}
         <div className="bg-slate-50 dark:bg-slate-800/50 p-6 border-t border-slate-100 dark:border-slate-800 flex-grow">
-          <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            About this post
-          </h4>
           <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
             Great day joining the Offshore Student Recruitment Team event! It's amazing to learn how Kaplan engages with future students globally.
           </p>
@@ -126,9 +114,6 @@ export default function KaplanCard() {
         {/* Bio / "About Me" Section */}
         <div className="space-y-6 mb-8">
           <div>
-            <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide mb-3">
-              About Me
-            </h4>
             <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
               Hi there! Namaste! 🙏 I'm Aastha, an international student from Nepal loving life on the Gold Coast. I chose Kaplan for its flexible MBA program and supportive community.
             </p>
