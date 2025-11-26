@@ -71,13 +71,26 @@ export default function KaplanCard() {
           <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4 font-normal">
             Great day joining the Offshore Student Recruitment Team event! It's amazing to learn how Kaplan engages with future students globally.
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-             <Badge variant="secondary" className="rounded-full px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 border-none">
-               #LifeAtKaplan
-             </Badge>
-             <Badge variant="secondary" className="rounded-full px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 border-none">
-               #GoldCoast
-             </Badge>
+          <div className="mb-4">
+             <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-2 flex items-center gap-1">
+               Explore related topics
+             </p>
+             <div className="flex flex-wrap gap-2">
+                <Badge 
+                  variant="secondary" 
+                  className="rounded-full px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 hover:text-primary border-none cursor-pointer transition-colors"
+                  title="View more posts about Life at Kaplan"
+                >
+                  #LifeAtKaplan
+                </Badge>
+                <Badge 
+                  variant="secondary" 
+                  className="rounded-full px-3 py-1 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 hover:text-primary border-none cursor-pointer transition-colors"
+                  title="View more posts about Gold Coast"
+                >
+                  #GoldCoast
+                </Badge>
+             </div>
           </div>
           
           <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-700/60">
