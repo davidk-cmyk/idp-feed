@@ -217,9 +217,37 @@ export default function KaplanCard() {
       </motion.div>
 
       {/* Sticky Mobile Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50">
-        <Button className="w-full h-12 text-base font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-none rounded-full gap-2 active:scale-[0.98] transition-all">
-          <MessageCircle className="h-5 w-5" />
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50 px-4 py-3 safe-area-pb">
+        <div className="flex items-center gap-3 mb-3">
+           <div className="relative shrink-0">
+              <Avatar className="h-10 w-10 border border-slate-200">
+                <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
+                <AvatarFallback>AS</AvatarFallback>
+              </Avatar>
+              <div className="absolute -bottom-0.5 -right-0.5 bg-white p-0.5 rounded-full shadow-sm border border-slate-100">
+                 <span className="text-[10px] leading-none block">🇳🇵</span>
+              </div>
+           </div>
+           <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <h4 className="text-sm font-bold text-slate-900 leading-none">Aastha</h4>
+                <Badge variant="secondary" className="px-1.5 py-0 text-[9px] font-semibold h-4 bg-blue-50 text-blue-700 border-blue-100">
+                  Ambassador
+                </Badge>
+              </div>
+              <div className="flex flex-col gap-0.5 mt-1">
+                <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
+                   <MapPin className="h-3 w-3" /> Kathmandu, Nepal
+                </div>
+                <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
+                   <GraduationCap className="h-3 w-3" /> MBA (Global)
+                </div>
+              </div>
+           </div>
+        </div>
+        
+        <Button className="w-full h-11 text-sm font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-none rounded-full gap-2 active:scale-[0.98] transition-all">
+          <MessageCircle className="h-4 w-4" />
           Ask me a question
         </Button>
       </div>
