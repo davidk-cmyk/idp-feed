@@ -37,11 +37,11 @@ export default function KaplanCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 font-sans overflow-hidden grid md:grid-cols-[1.1fr_1fr]"
+      className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 font-sans overflow-hidden flex flex-col md:grid md:grid-cols-[1.1fr_1fr]"
     >
       {/* Left Side: Media & Content Context */}
-      <div className="relative h-full min-h-[400px] md:h-auto group overflow-hidden bg-slate-100 flex flex-col">
-        <div className="relative flex-grow h-[60%] overflow-hidden">
+      <div className="relative h-auto md:h-full md:min-h-[400px] group overflow-hidden bg-slate-100 flex flex-col">
+        <div className="relative h-[250px] md:h-[60%] md:flex-grow overflow-hidden">
           <motion.img 
             src={generatedImage} 
             alt="Student Ambassador at Gold Coast"
@@ -61,7 +61,7 @@ export default function KaplanCard() {
         </div>
 
         {/* Post Description Area */}
-        <div className="bg-white dark:bg-slate-800 p-6 border-t border-slate-100 dark:border-slate-800 flex-grow">
+        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 border-t border-slate-100 dark:border-slate-800 flex-grow flex flex-col justify-center">
           <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4 font-normal">
             Great day joining the Offshore Student Recruitment Team event! It's amazing to learn how Kaplan engages with future students globally.
           </p>
@@ -140,10 +140,10 @@ export default function KaplanCard() {
       </div>
 
       {/* Right Side: Author Profile & "Ask Me" Context */}
-      <div className="p-8 md:p-8 flex flex-col h-full bg-white dark:bg-slate-900 relative overflow-y-auto border-l border-slate-100 dark:border-slate-800">
+      <div className="p-5 md:p-8 flex flex-col h-full bg-white dark:bg-slate-900 relative overflow-y-auto border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800">
         
         {/* Author Header - Clean & Corporate */}
-        <div className="flex items-start gap-4 mb-8">
+        <div className="flex items-start gap-4 mb-6 md:mb-8">
           <div className="relative">
             <Avatar className="h-16 w-16 border border-slate-200">
               <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
@@ -205,7 +205,7 @@ export default function KaplanCard() {
           <p className="text-slate-600 text-sm mb-4 font-medium">
             Have questions about life in Gold Coast?
           </p>
-          <Button className="w-full h-12 text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-sm rounded-lg gap-2">
+          <Button className="w-full h-14 md:h-12 text-base md:text-base font-bold bg-primary hover:bg-primary/90 text-white shadow-sm rounded-lg gap-2 active:scale-[0.98] transition-transform">
             <MessageCircle className="h-5 w-5" />
             Ask me a question
           </Button>
