@@ -16,13 +16,43 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function KaplanCard() {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(24);
   const isMobile = useIsMobile();
+  
+  // Ref to detect when the profile section is in view
+  const profileRef = useRef<HTMLDivElement>(null);
+  const [showSticky, setShowSticky] = useState(true);
+
+  useEffect(() => {
+    if (!isMobile) {
+      setShowSticky(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If profile section is visible (intersecting), HIDE the sticky bar
+        // If profile section is NOT visible (not intersecting), SHOW the sticky bar
+        setShowSticky(!entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Trigger when 10% of the profile section is visible
+    );
+
+    if (profileRef.current) {
+      observer.observe(profileRef.current);
+    }
+
+    return () => {
+      if (profileRef.current) {
+        observer.unobserve(profileRef.current);
+      }
+    };
+  }, [isMobile]);
 
   const handleLike = () => {
     if (liked) {
@@ -140,7 +170,10 @@ export default function KaplanCard() {
         </div>
 
         {/* Right Side: Author Profile & "Ask Me" Context */}
-        <div className="p-5 md:p-8 flex flex-col h-full bg-white dark:bg-slate-900 relative overflow-y-auto border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800">
+        <div 
+          ref={profileRef}
+          className="p-5 md:p-8 flex flex-col h-full bg-white dark:bg-slate-900 relative overflow-y-auto border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800"
+        >
           
           {/* Author Header - Clean & Corporate */}
           <div className="flex items-start gap-4 mb-6 md:mb-8">
@@ -216,41 +249,51 @@ export default function KaplanCard() {
         </div>
       </motion.div>
 
-      {/* Sticky Mobile Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50 px-4 py-3 safe-area-pb">
-        <div className="flex items-center gap-3 mb-3">
-           <div className="relative shrink-0">
-              <Avatar className="h-10 w-10 border border-slate-200">
-                <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
-                <AvatarFallback>AS</AvatarFallback>
-              </Avatar>
-              <div className="absolute -bottom-0.5 -right-0.5 bg-white p-0.5 rounded-full shadow-sm border border-slate-100">
-                 <span className="text-[10px] leading-none block">🇳🇵</span>
-              </div>
-           </div>
-           <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-slate-900 leading-none">Aastha</h4>
-                <Badge variant="secondary" className="px-1.5 py-0 text-[9px] font-semibold h-4 bg-blue-50 text-blue-700 border-blue-100">
-                  Ambassador
-                </Badge>
-              </div>
-              <div className="flex flex-col gap-0.5 mt-1">
-                <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
-                   <MapPin className="h-3 w-3" /> Kathmandu, Nepal
-                </div>
-                <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
-                   <GraduationCap className="h-3 w-3" /> MBA (Global)
-                </div>
-              </div>
-           </div>
-        </div>
-        
-        <Button className="w-full h-11 text-sm font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-none rounded-full gap-2 active:scale-[0.98] transition-all">
-          <MessageCircle className="h-4 w-4" />
-          Ask me a question
-        </Button>
-      </div>
+      {/* Sticky Mobile Action Bar - Conditionally Rendered with Animation */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50 px-4 py-3 safe-area-pb"
+          >
+            <div className="flex items-center gap-3 mb-3">
+               <div className="relative shrink-0">
+                  <Avatar className="h-10 w-10 border border-slate-200">
+                    <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
+                    <AvatarFallback>AS</AvatarFallback>
+                  </Avatar>
+                  <div className="absolute -bottom-0.5 -right-0.5 bg-white p-0.5 rounded-full shadow-sm border border-slate-100">
+                     <span className="text-[10px] leading-none block">🇳🇵</span>
+                  </div>
+               </div>
+               <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h4 className="text-sm font-bold text-slate-900 leading-none">Aastha</h4>
+                    <Badge variant="secondary" className="px-1.5 py-0 text-[9px] font-semibold h-4 bg-blue-50 text-blue-700 border-blue-100">
+                      Ambassador
+                    </Badge>
+                  </div>
+                  <div className="flex flex-col gap-0.5 mt-1">
+                    <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
+                       <MapPin className="h-3 w-3" /> Kathmandu, Nepal
+                    </div>
+                    <div className="flex items-center gap-1 text-[11px] text-slate-500 leading-none">
+                       <GraduationCap className="h-3 w-3" /> MBA (Global)
+                    </div>
+                  </div>
+               </div>
+            </div>
+            
+            <Button className="w-full h-11 text-sm font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-none rounded-full gap-2 active:scale-[0.98] transition-all">
+              <MessageCircle className="h-4 w-4" />
+              Ask me a question
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
