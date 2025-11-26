@@ -71,10 +71,11 @@ export default function KaplanCard() {
           <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4 font-normal">
             Great day joining the Offshore Student Recruitment Team event! It's amazing to learn how Kaplan engages with future students globally.
           </p>
-          <div className="mb-4">
-             <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400 mb-2 flex items-center gap-1">
-               Like what you see? Explore similar content using the tags below
-             </p>
+          <div className="mb-5">
+             <div className="mb-2.5">
+               <p className="text-sm font-semibold text-slate-800 mb-0.5">Like what you see?</p>
+               <p className="text-xs text-slate-500">Explore similar content using the tags below</p>
+             </div>
              <div className="flex flex-wrap gap-2">
                 <Badge 
                   variant="secondary" 
