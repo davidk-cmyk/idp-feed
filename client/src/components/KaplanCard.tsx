@@ -58,12 +58,6 @@ export default function KaplanCard() {
             </Button>
           </div>
 
-          {/* Top Right Action */}
-          <div className="absolute top-4 right-4 z-20">
-            <Button size="icon" variant="ghost" className="text-white hover:bg-black/20 rounded-full h-8 w-8">
-              <MoreHorizontal className="h-5 w-5" />
-            </Button>
-          </div>
         </div>
 
         {/* Post Description Area */}
@@ -141,10 +135,6 @@ export default function KaplanCard() {
                 </div>
              </div>
 
-             <button className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-slate-50">
-               <Share2 className="h-5 w-5" /> 
-               <span className="text-xs text-slate-500 font-normal">Share</span>
-             </button>
           </div>
         </div>
       </div>
