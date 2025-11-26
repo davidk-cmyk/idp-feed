@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Share2, 
   Heart, 
@@ -8,17 +8,30 @@ import {
   MapPin,
   GraduationCap,
   Globe,
-  Music,
   Coffee,
-  Sun
+  Sun,
+  ThumbsUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
+import { useState } from "react";
 
 export default function KaplanCard() {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(24);
+
+  const handleLike = () => {
+    if (liked) {
+      setLikeCount(prev => prev - 1);
+      setLiked(false);
+    } else {
+      setLikeCount(prev => prev + 1);
+      setLiked(true);
+    }
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -67,14 +80,56 @@ export default function KaplanCard() {
              </Badge>
           </div>
           
-          <div className="flex items-center gap-6 pt-2 border-t border-slate-100 dark:border-slate-700/60">
-             <button className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors group">
-               <Heart className="h-5 w-5 group-hover:fill-primary/10" /> 
-               <span className="text-xs text-slate-400 font-normal">24 Likes</span>
-             </button>
-             <button className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors">
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-700/60">
+             {/* Enhanced Like Interaction */}
+             <div className="flex items-center gap-2">
+                <motion.button
+                  onClick={handleLike}
+                  whileTap={{ scale: 0.9 }}
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${
+                    liked 
+                      ? "bg-red-50 text-red-600 border border-red-100" 
+                      : "bg-slate-50 text-slate-600 border border-slate-200 hover:bg-slate-100 hover:border-slate-300"
+                  }`}
+                >
+                  <AnimatePresence mode="wait">
+                    {liked ? (
+                      <motion.div
+                        key="filled"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                      >
+                        <Heart className="h-5 w-5 fill-current" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="outline"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                      >
+                        <Heart className="h-5 w-5" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <span className="font-semibold text-sm">
+                    {liked ? "Liked!" : "Like this post"}
+                  </span>
+                  
+                  {/* Confetti particles could go here for extra delight */}
+                </motion.button>
+                
+                {/* Counter Badge - Separated for clarity */}
+                <div className="flex items-center gap-1 px-2 py-1 bg-slate-50 rounded-md border border-slate-100 text-xs font-medium text-slate-500">
+                  <ThumbsUp className="h-3 w-3" />
+                  {likeCount}
+                </div>
+             </div>
+
+             <button className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary transition-colors px-3 py-2 rounded-lg hover:bg-slate-50">
                <Share2 className="h-5 w-5" /> 
-               <span className="text-xs text-slate-400 font-normal">Share</span>
+               <span className="text-xs text-slate-500 font-normal">Share</span>
              </button>
           </div>
         </div>
