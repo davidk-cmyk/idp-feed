@@ -9,47 +9,47 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   
-  /* Kaplan Brand Colors & Sheffield Inspiration */
-  --color-background: hsl(210 20% 98%);
-  --color-foreground: hsl(215 25% 27%);
+  /* IDP Inspired Palette */
+  --color-background: hsl(0 0% 98%); /* Light gray background */
+  --color-foreground: hsl(210 11% 15%); /* Dark charcoal text */
   
   --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(215 25% 27%);
+  --color-card-foreground: hsl(210 11% 15%);
   
   --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(215 25% 27%);
+  --color-popover-foreground: hsl(210 11% 15%);
   
-  /* Kaplan Teal/Blue */
-  --color-primary: hsl(192 100% 25%); 
+  /* IDP Brand Colors - Darker, Corporate Teal/Green */
+  --color-primary: hsl(168 100% 29%); /* Deep Teal */
   --color-primary-foreground: hsl(0 0% 100%);
   
-  /* Soft Accent/Secondary */
-  --color-secondary: hsl(210 40% 96%);
-  --color-secondary-foreground: hsl(192 100% 25%);
+  --color-secondary: hsl(210 20% 96%);
+  --color-secondary-foreground: hsl(210 11% 15%);
   
-  --color-muted: hsl(210 40% 96%);
+  --color-muted: hsl(210 20% 96%);
   --color-muted-foreground: hsl(215 16% 47%);
   
-  --color-accent: hsl(210 40% 96%);
-  --color-accent-foreground: hsl(192 100% 25%);
+  --color-accent: hsl(210 20% 96%);
+  --color-accent-foreground: hsl(168 100% 29%);
   
   --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(0 0% 98%);
 
   --color-border: hsl(214 32% 91%);
   --color-input: hsl(214 32% 91%);
-  --color-ring: hsl(192 100% 25%);
+  --color-ring: hsl(168 100% 29%);
 
-  --color-chart-1: hsl(192 100% 25%);
+  --color-chart-1: hsl(168 100% 29%);
   --color-chart-2: hsl(173 58% 39%);
   --color-chart-3: hsl(197 37% 24%);
   --color-chart-4: hsl(43 74% 66%);
   --color-chart-5: hsl(27 87% 67%);
 
-  --font-sans: 'DM Sans', 'Inter', sans-serif;
-  --font-heading: 'Montserrat', sans-serif;
+  /* Typography - Open Sans for that clean, corporate feel */
+  --font-sans: 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-heading: 'Open Sans', 'Helvetica Neue', sans-serif;
   
-  --radius: 0.75rem;
+  --radius: 0.5rem; /* 8px - Standard rounded */
 }
 
 @layer base {
@@ -60,6 +60,6 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+    @apply font-heading font-bold tracking-tight;
   }
 }
