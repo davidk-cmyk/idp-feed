@@ -6,9 +6,20 @@ import { Button } from "@/components/ui/button";
 import { MapPin, ExternalLink, Globe, Users, GraduationCap, Search, ArrowRight, X } from "lucide-react";
 import { Link } from "wouter";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function UniversityProfile() {
+  const [showSticky, setShowSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 300;
+      setShowSticky(scrolled);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   
   const ambassadors = [
     { name: "Aastha", avatar: "https://i.pravatar.cc/150?u=aastha_kaplan", country: "🇳🇵", role: "Student Ambassador" },
@@ -187,6 +198,26 @@ export default function UniversityProfile() {
         </div>
 
       </div>
+
+      {/* Sticky Mobile Action Bar */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            transition={{ duration: 0.3 }}
+            className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50 px-4 py-3 safe-area-pb"
+          >
+            <Link href="/university/1/enquiry">
+              <Button className="w-full h-12 text-base font-semibold bg-[#3b66f5] hover:bg-[#2f52c4] text-white shadow-lg rounded-full gap-2">
+                <Search className="h-5 w-5" />
+                Enquire Now
+              </Button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

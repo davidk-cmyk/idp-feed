@@ -23,17 +23,17 @@ export default function Navigation() {
 
   return (
     <div className="w-full bg-white dark:bg-slate-900 mb-8">
-      <div className="max-w-6xl mx-auto px-4 pt-8">
+      <div className="max-w-6xl mx-auto px-4 pt-6 md:pt-8">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-slate-800 dark:text-white inline-block relative pb-2">
+        <div className="mb-4 md:mb-6">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white inline-block relative pb-2">
             IDP Community
             <span className="absolute bottom-0 left-0 w-8 h-1 bg-[#e86e25] rounded-full"></span>
           </h1>
         </div>
 
-        {/* Tabs */}
-        <div className="flex items-center gap-8 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide">
+        {/* Tabs - Mobile Optimized */}
+        <div className="flex items-center gap-6 md:gap-8 border-b border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
           {tabs.map((tab) => (
             <Link key={tab.name} href={tab.path}>
               <div

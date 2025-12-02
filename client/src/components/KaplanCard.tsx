@@ -239,7 +239,7 @@ export default function KaplanCard() {
           <div className="flex-grow" />
 
           {/* Call to Action Area - Visible on all screens now */}
-          <div className="mt-6 pt-6 border-t border-slate-100">
+          <div className="mt-6 pt-6 border-t border-slate-100 pb-20 md:pb-0">
             <p className="text-slate-600 text-sm mb-4 font-medium">
               Have questions about life in Gold Coast?
             </p>
