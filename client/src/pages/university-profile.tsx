@@ -110,9 +110,15 @@ export default function UniversityProfile() {
 
                {/* Actions */}
                <div className="flex flex-col gap-3 min-w-[200px]">
-                 <Button className="w-full bg-[#3b66f5] hover:bg-[#2f52c4] text-white font-semibold gap-2 rounded-full shadow-sm">
-                    <Search className="h-4 w-4" />
-                    Explore Courses
+                 <Link href="/university/1/enquiry">
+                   <Button className="w-full bg-[#3b66f5] hover:bg-[#2f52c4] text-white font-semibold gap-2 rounded-full shadow-sm">
+                      <Search className="h-4 w-4" />
+                      Enquire Now
+                   </Button>
+                 </Link>
+                 <Button variant="outline" className="w-full border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold gap-2 rounded-full shadow-sm">
+                    <ExternalLink className="h-4 w-4" />
+                    Visit Website
                  </Button>
                </div>
             </div>
