@@ -38,14 +38,18 @@ export default function FeedCard({ id, author, school, time, image, title, avata
     >
       {/* Header */}
       <div className="p-4 flex items-center gap-3">
-        <Avatar className="h-8 w-8 border border-slate-200">
-          <AvatarImage src={avatarUrl} alt={author} />
-          <AvatarFallback>{author[0]}</AvatarFallback>
-        </Avatar>
+        <Link href={`/ambassador/${id}`}>
+          <Avatar className="h-8 w-8 border border-slate-200 cursor-pointer hover:ring-2 ring-[#3b66f5] ring-offset-1 transition-all">
+            <AvatarImage src={avatarUrl} alt={author} />
+            <AvatarFallback>{author[0]}</AvatarFallback>
+          </Avatar>
+        </Link>
         <div className="flex flex-col">
-          <span className="text-sm font-bold text-slate-900 dark:text-white leading-none">
-            {author}
-          </span>
+          <Link href={`/ambassador/${id}`}>
+            <span className="text-sm font-bold text-slate-900 dark:text-white leading-none cursor-pointer hover:text-[#3b66f5] transition-colors">
+              {author}
+            </span>
+          </Link>
           <span className="text-[11px] text-[#3b66f5] font-medium mt-0.5">
             {school}
           </span>

@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Post from "@/pages/post";
 import QAList from "@/pages/qa-list";
 import QADetail from "@/pages/qa-detail";
+import AmbassadorProfile from "@/pages/ambassador-profile";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/post/:id" component={Post} />
       <Route path="/qa" component={QAList} />
       <Route path="/qa/:id" component={QADetail} />
+      <Route path="/ambassador/:id" component={AmbassadorProfile} />
       <Route component={NotFound} />
     </Switch>
   );

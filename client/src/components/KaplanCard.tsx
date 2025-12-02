@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
 import { useState, useRef, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "wouter";
 
 export default function KaplanCard() {
   const [liked, setLiked] = useState(false);
@@ -177,18 +178,22 @@ export default function KaplanCard() {
           
           {/* Author Header - Clean & Corporate */}
           <div className="flex items-start gap-4 mb-6 md:mb-8">
-            <div className="relative">
-              <Avatar className="h-16 w-16 border border-slate-200">
-                <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
-                <AvatarFallback>AS</AvatarFallback>
-              </Avatar>
-              <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full shadow-sm border border-slate-100">
-                 <span className="text-lg leading-none block">🇳🇵</span>
-              </div>
+            <div className="relative cursor-pointer group">
+              <Link href="/ambassador/1">
+                <Avatar className="h-16 w-16 border border-slate-200 group-hover:ring-2 ring-[#3b66f5] ring-offset-2 transition-all">
+                  <AvatarImage src="https://i.pravatar.cc/150?u=aastha_kaplan" alt="Aastha" />
+                  <AvatarFallback>AS</AvatarFallback>
+                </Avatar>
+                <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full shadow-sm border border-slate-100">
+                   <span className="text-lg leading-none block">🇳🇵</span>
+                </div>
+              </Link>
             </div>
             
             <div className="flex-1 min-w-0 pt-1">
-              <h3 className="font-bold text-xl text-slate-900 dark:text-white leading-tight truncate">Aastha</h3>
+              <Link href="/ambassador/1">
+                <h3 className="font-bold text-xl text-slate-900 dark:text-white leading-tight truncate hover:text-[#3b66f5] transition-colors cursor-pointer">Aastha</h3>
+              </Link>
               <div className="flex items-center gap-2 text-slate-500 text-sm mt-1">
                 <span className="font-medium text-primary truncate">Student Ambassador</span>
               </div>
