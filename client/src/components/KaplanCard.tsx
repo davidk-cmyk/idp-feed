@@ -17,14 +17,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
 import { useState, useRef, useEffect } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, usePrefersReducedMotion } from "@/hooks/use-mobile";
 import { Link } from "wouter";
 
 export default function KaplanCard() {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(24);
   const isMobile = useIsMobile();
-  
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   // Ref to detect when the profile section is in view
   const profileRef = useRef<HTMLDivElement>(null);
   const [showSticky, setShowSticky] = useState(true);
@@ -67,19 +68,21 @@ export default function KaplanCard() {
 
   return (
     <>
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+      <motion.div
+        initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.5, ease: "easeOut" }}
         className="w-full max-w-5xl bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 font-sans overflow-hidden flex flex-col md:grid md:grid-cols-[1.1fr_1fr] mb-20 md:mb-0"
       >
         {/* Left Side: Media & Content Context */}
         <div className="relative h-auto md:h-full md:min-h-[400px] group overflow-hidden bg-slate-100 flex flex-col">
           <div className="relative h-[250px] md:h-[60%] md:flex-grow overflow-hidden">
-            <motion.img 
-              src={generatedImage} 
+            <motion.img
+              src={generatedImage}
               alt="Student Ambassador at Gold Coast"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 md:duration-700 md:group-hover:scale-105"
             />
             
             {/* Gradient Overlay - Subtle to match IDP style */}
@@ -257,11 +260,11 @@ export default function KaplanCard() {
       {/* Sticky Mobile Action Bar - Conditionally Rendered with Animation */}
       <AnimatePresence>
         {showSticky && (
-          <motion.div 
-            initial={{ y: 100 }}
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { y: 100 }}
             animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            transition={{ duration: 0.3 }}
+            exit={prefersReducedMotion ? undefined : { y: 100 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
             className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.1)] md:hidden z-50 px-4 py-3 safe-area-pb"
           >
             <div className="flex items-center gap-3 mb-3">
