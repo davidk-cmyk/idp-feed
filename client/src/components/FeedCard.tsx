@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ToastAction } from "@/components/ui/toast";
+import { usePrefersReducedMotion } from "@/hooks/use-mobile";
 
 interface FeedCardProps {
   id: string;
@@ -24,6 +25,7 @@ export default function FeedCard({ id, author, school, time, image, title, avata
   const [likeCount, setLikeCount] = useState(initialLikes);
   const [saved, setSaved] = useState(false);
   const { toast } = useToast();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   // Load saved state from localStorage
   useEffect(() => {
@@ -75,9 +77,9 @@ export default function FeedCard({ id, author, school, time, image, title, avata
   };
 
   return (
-    <motion.div 
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
+    <motion.div
+      whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+      transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
       className="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
     >
       {/* Header */}
@@ -108,10 +110,12 @@ export default function FeedCard({ id, author, school, time, image, title, avata
       {/* Media Area */}
       <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden group">
         <Link href={`/post/${id}`} className="cursor-pointer block h-full">
-          <img 
-            src={image} 
-            alt={title} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover transition-transform duration-500 md:duration-700 md:group-hover:scale-105"
           />
           
           {/* Overlay Gradient */}

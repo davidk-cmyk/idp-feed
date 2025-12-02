@@ -51,14 +51,14 @@ export default function UniversityEnquiry() {
         </div>
 
         <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-          <div className="p-8 border-b border-slate-100 dark:border-slate-800">
+          <div className="p-4 md:p-8 border-b border-slate-100 dark:border-slate-800">
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Enquiry Form</h1>
             <p className="text-slate-600 text-sm">
               To avoid delays you MUST include your Application/Student ID and course of interest.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-8 space-y-10">
+          <form onSubmit={handleSubmit} className="p-4 md:p-8 space-y-8 md:space-y-10">
             
             {/* About you */}
             <div className="space-y-6">
@@ -77,7 +77,7 @@ export default function UniversityEnquiry() {
 
               <div className="space-y-2">
                 <Label htmlFor="dob">Date of birth (dd/mm/yyyy) <span className="text-red-500">*</span></Label>
-                <Input id="dob" type="date" required className="max-w-[200px]" />
+                <Input id="dob" type="date" required className="w-full md:max-w-[200px]" />
               </div>
 
               <div className="space-y-2">
@@ -88,11 +88,11 @@ export default function UniversityEnquiry() {
               <div className="space-y-2">
                 <Label htmlFor="phone">Mobile phone <span className="text-red-500">*</span></Label>
                 <div className="flex gap-2">
-                  <div className="w-[100px] flex items-center border rounded-md px-3 bg-slate-50">
-                    <span className="text-xl mr-2">🇦🇺</span>
+                  <div className="w-[90px] md:w-[100px] flex items-center justify-center border rounded-md px-2 md:px-3 bg-slate-50 h-11 md:h-9 shrink-0">
+                    <span className="text-lg md:text-xl mr-1.5 md:mr-2">🇦🇺</span>
                     <span className="text-sm">+61</span>
                   </div>
-                  <Input id="phone" type="tel" required className="flex-1" />
+                  <Input id="phone" type="tel" required className="flex-1" inputMode="tel" />
                 </div>
               </div>
 
@@ -216,15 +216,12 @@ export default function UniversityEnquiry() {
                     "Science",
                     "Veterinary, agricultural and food sciences"
                   ].map((interest) => (
-                    <div key={interest} className="flex items-start space-x-2">
-                      <Checkbox id={interest} />
-                      <label
-                        htmlFor={interest}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 pt-0.5"
-                      >
+                    <label key={interest} htmlFor={interest} className="flex items-start space-x-3 py-1 cursor-pointer min-h-[44px] md:min-h-0">
+                      <Checkbox id={interest} className="mt-0.5" />
+                      <span className="text-sm font-medium leading-snug peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                         {interest}
-                      </label>
-                    </div>
+                      </span>
+                    </label>
                   ))}
                 </div>
               </div>
@@ -275,25 +272,19 @@ export default function UniversityEnquiry() {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-start space-x-2">
-                  <Checkbox id="privacy" required />
-                  <label
-                    htmlFor="privacy"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 pt-0.5"
-                  >
+                <label htmlFor="privacy" className="flex items-start space-x-3 py-1 cursor-pointer min-h-[44px] md:min-h-0">
+                  <Checkbox id="privacy" required className="mt-0.5" />
+                  <span className="text-sm font-medium leading-snug peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Yes, I have read and agree to the privacy collection notice <span className="text-red-500">*</span>
-                  </label>
-                </div>
+                  </span>
+                </label>
 
-                <div className="flex items-start space-x-2">
-                  <Checkbox id="marketing" />
-                  <label
-                    htmlFor="marketing"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 pt-0.5 leading-relaxed"
-                  >
+                <label htmlFor="marketing" className="flex items-start space-x-3 py-1 cursor-pointer min-h-[44px] md:min-h-0">
+                  <Checkbox id="marketing" className="mt-0.5" />
+                  <span className="text-sm font-medium leading-snug peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Yes, I would like to receive information about studying at the University, including news and study updates, event invitations and market research.
-                  </label>
-                </div>
+                  </span>
+                </label>
               </div>
             </div>
 
