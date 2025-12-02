@@ -120,60 +120,68 @@ export default function FeedCard({ id, author, school, time, image, title, avata
             </span>
           </div>
         </Link>
-
-        {/* Save Button - Top Right */}
-        <motion.button
-          onClick={handleSave}
-          whileTap={{ scale: 0.9 }}
-          className="absolute top-3 right-3 p-2 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10 border border-white/10"
-        >
-          <Bookmark className={`h-5 w-5 ${saved ? "fill-white text-white" : "text-white"}`} />
-        </motion.button>
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
-        <motion.button
-          onClick={handleLike}
-          whileTap={{ scale: 0.95 }}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-200 ${
-            liked 
-              ? "bg-red-50 text-red-600 border-red-100" 
-              : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
-          }`}
-        >
-          <AnimatePresence mode="wait">
-            {liked ? (
-              <motion.div
-                key="filled"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-              >
-                <Heart className="h-4 w-4 fill-current" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="outline"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-              >
-                <Heart className="h-4 w-4" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <span className="text-sm font-semibold whitespace-nowrap">
-            {liked ? "Liked!" : "Like this post"}
-          </span>
-        </motion.button>
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <motion.button
+            onClick={handleLike}
+            whileTap={{ scale: 0.95 }}
+            className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
+              liked 
+                ? "bg-red-50 text-red-600 border-red-100" 
+                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+            }`}
+          >
+            <AnimatePresence mode="wait">
+              {liked ? (
+                <motion.div
+                  key="filled"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                >
+                  <Heart className="h-4 w-4 fill-current" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="outline"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                >
+                  <Heart className="h-4 w-4" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
+              {liked ? "Liked" : "Like"}
+            </span>
+          </motion.button>
+
+          <motion.button
+            onClick={handleSave}
+            whileTap={{ scale: 0.95 }}
+            className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
+              saved
+                ? "bg-purple-50 text-purple-600 border-purple-100"
+                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+            }`}
+          >
+            <Bookmark className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
+            <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
+              {saved ? "Saved" : "Save"}
+            </span>
+          </motion.button>
+        </div>
         
         <Link href={`/post/${id}`}>
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-100 bg-blue-50 text-blue-600 hover:bg-blue-100 hover:border-blue-200 transition-all duration-200"
           >
-            <span className="text-sm font-semibold">Read full story</span>
+            <span className="text-xs font-semibold">Read full story</span>
             <ArrowRight className="h-4 w-4" />
           </motion.button>
         </Link>
