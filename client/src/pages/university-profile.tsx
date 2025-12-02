@@ -3,18 +3,24 @@ import FeedCard from "@/components/FeedCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, ExternalLink, Globe, Users, GraduationCap } from "lucide-react";
+import { MapPin, ExternalLink, Globe, Users, GraduationCap, Search, ArrowRight, X } from "lucide-react";
 import { Link } from "wouter";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { useState } from "react";
 
 export default function UniversityProfile() {
   
   const ambassadors = [
-    { name: "Aastha", avatar: "https://i.pravatar.cc/150?u=aastha_kaplan", country: "🇳🇵" },
-    { name: "Antonella", avatar: "https://i.pravatar.cc/150?u=antonella", country: "🇦🇷" },
-    { name: "Stephen", avatar: "https://i.pravatar.cc/150?u=stephen", country: "🇬🇧" },
-    { name: "Maria", avatar: "https://i.pravatar.cc/150?u=maria", country: "🇪🇸" },
-    { name: "John", avatar: "https://i.pravatar.cc/150?u=john", country: "🇺🇸" },
+    { name: "Aastha", avatar: "https://i.pravatar.cc/150?u=aastha_kaplan", country: "🇳🇵", role: "Student Ambassador" },
+    { name: "Antonella", avatar: "https://i.pravatar.cc/150?u=antonella", country: "🇦🇷", role: "Student Ambassador" },
+    { name: "Stephen", avatar: "https://i.pravatar.cc/150?u=stephen", country: "🇬🇧", role: "Alumni Ambassador" },
+    { name: "Maria", avatar: "https://i.pravatar.cc/150?u=maria", country: "🇪🇸", role: "Student Ambassador" },
+    { name: "John", avatar: "https://i.pravatar.cc/150?u=john", country: "🇺🇸", role: "Student Ambassador" },
+    { name: "Sarah", avatar: "https://i.pravatar.cc/150?u=sarah", country: "🇨🇦", role: "Student Ambassador" },
+    { name: "Michael", avatar: "https://i.pravatar.cc/150?u=michael", country: "🇩🇪", role: "Alumni Ambassador" },
+    { name: "Yuki", avatar: "https://i.pravatar.cc/150?u=yuki", country: "🇯🇵", role: "Student Ambassador" },
+    { name: "Chen", avatar: "https://i.pravatar.cc/150?u=chen", country: "🇨🇳", role: "Student Ambassador" },
   ];
 
   const posts = [
@@ -104,10 +110,10 @@ export default function UniversityProfile() {
                </div>
 
                {/* Actions */}
-               <div className="flex flex-col gap-3 min-w-[180px]">
+               <div className="flex flex-col gap-3 min-w-[200px]">
                  <Button className="w-full bg-[#3b66f5] hover:bg-[#2f52c4] text-white font-semibold gap-2 rounded-full shadow-sm">
-                    <ExternalLink className="h-4 w-4" />
-                    Visit Website
+                    <Search className="h-4 w-4" />
+                    Explore Courses
                  </Button>
                </div>
             </div>
@@ -124,11 +130,39 @@ export default function UniversityProfile() {
             <div className="border-t border-slate-100 pt-6">
                <div className="flex items-center justify-between mb-4">
                   <h2 className="text-lg font-bold text-slate-900">Meet our Ambassadors</h2>
-                  <Button variant="link" className="text-[#3b66f5] font-semibold p-0 h-auto">View all</Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="link" className="text-[#3b66f5] font-semibold p-0 h-auto">View all</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-3xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl font-bold mb-4">All Ambassadors</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {ambassadors.map((amb, idx) => (
+                          <Link key={idx} href="/ambassador/1">
+                             <div className="flex flex-col items-center p-4 rounded-lg border border-slate-100 hover:border-blue-100 hover:bg-blue-50/50 transition-all cursor-pointer group text-center">
+                                <div className="relative mb-3">
+                                  <Avatar className="h-16 w-16 border border-slate-200 group-hover:ring-2 ring-[#3b66f5] ring-offset-2 transition-all">
+                                    <AvatarImage src={amb.avatar} alt={amb.name} />
+                                    <AvatarFallback>{amb.name[0]}</AvatarFallback>
+                                  </Avatar>
+                                  <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full shadow-sm border border-slate-100 text-sm">
+                                    {amb.country}
+                                  </div>
+                                </div>
+                                <span className="text-sm font-bold text-slate-900 group-hover:text-[#3b66f5] transition-colors">{amb.name}</span>
+                                <span className="text-[10px] text-slate-500 mt-1">{amb.role}</span>
+                             </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                </div>
                
                <div className="flex flex-wrap gap-4">
-                  {ambassadors.map((amb, idx) => (
+                  {ambassadors.slice(0, 5).map((amb, idx) => (
                     <Link key={idx} href="/ambassador/1">
                        <div className="flex flex-col items-center gap-2 cursor-pointer group">
                           <div className="relative">
@@ -145,12 +179,40 @@ export default function UniversityProfile() {
                     </Link>
                   ))}
                   
-                  <div className="flex flex-col items-center gap-2 cursor-pointer group">
-                    <div className="h-14 w-14 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-slate-100 group-hover:text-slate-600 transition-colors">
-                      <span className="text-xs font-bold">+12</span>
-                    </div>
-                    <span className="text-xs font-medium text-slate-500">More</span>
-                  </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <div className="flex flex-col items-center gap-2 cursor-pointer group">
+                        <div className="h-14 w-14 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-slate-100 group-hover:text-slate-600 transition-colors">
+                          <span className="text-xs font-bold">+{ambassadors.length - 5}</span>
+                        </div>
+                        <span className="text-xs font-medium text-slate-500">More</span>
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-3xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl font-bold mb-4">All Ambassadors</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                        {ambassadors.map((amb, idx) => (
+                          <Link key={idx} href="/ambassador/1">
+                             <div className="flex flex-col items-center p-4 rounded-lg border border-slate-100 hover:border-blue-100 hover:bg-blue-50/50 transition-all cursor-pointer group text-center">
+                                <div className="relative mb-3">
+                                  <Avatar className="h-16 w-16 border border-slate-200 group-hover:ring-2 ring-[#3b66f5] ring-offset-2 transition-all">
+                                    <AvatarImage src={amb.avatar} alt={amb.name} />
+                                    <AvatarFallback>{amb.name[0]}</AvatarFallback>
+                                  </Avatar>
+                                  <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full shadow-sm border border-slate-100 text-sm">
+                                    {amb.country}
+                                  </div>
+                                </div>
+                                <span className="text-sm font-bold text-slate-900 group-hover:text-[#3b66f5] transition-colors">{amb.name}</span>
+                                <span className="text-[10px] text-slate-500 mt-1">{amb.role}</span>
+                             </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                </div>
             </div>
 
