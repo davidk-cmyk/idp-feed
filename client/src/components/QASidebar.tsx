@@ -67,18 +67,17 @@ export default function QASidebar() {
   ];
 
   return (
-    <div className="w-64 hidden lg:block flex-shrink-0 pr-8">
-      <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-6">Categories</h3>
+    <div className="w-64 hidden lg:block flex-shrink-0 pr-6 pt-2">
       <div className="space-y-8">
         {categories.map((category, idx) => (
           <div key={idx}>
-            <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">{category.title}</h4>
-            <ul className="space-y-2">
+            <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-4 pl-2">{category.title}</h4>
+            <ul className="space-y-1">
               {category.items.map((item, itemIdx) => (
                 <li key={itemIdx}>
-                  <a href="#" className={`flex items-center gap-3 text-sm ${item.active ? 'text-[#3b66f5] font-semibold' : 'text-slate-600 hover:text-[#3b66f5]'} transition-colors`}>
-                    <div className={`flex items-center justify-center w-6 h-6 rounded-full ${item.active ? 'bg-blue-50' : 'bg-slate-50'}`}>
-                       <item.icon className={`h-3.5 w-3.5 ${item.active ? 'text-[#3b66f5]' : 'text-slate-400'}`} />
+                  <a href="#" className={`flex items-center gap-3 py-1.5 px-2 rounded-lg text-[13px] transition-all ${item.active ? 'text-[#3b66f5] font-semibold bg-blue-50/50' : 'text-slate-600 hover:text-[#3b66f5] hover:bg-slate-50'}`}>
+                    <div className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 ${item.active ? 'bg-blue-100 text-[#3b66f5]' : 'bg-slate-100 text-slate-400'}`}>
+                       <item.icon className="h-3 w-3" />
                     </div>
                     {item.label}
                   </a>

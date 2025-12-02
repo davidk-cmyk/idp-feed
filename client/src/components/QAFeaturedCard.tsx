@@ -43,14 +43,14 @@ export default function QAFeaturedCard({ id, category, time, question, answer }:
          </p>
 
          {answer.videoThumbnail && (
-           <div className="relative aspect-video rounded-lg overflow-hidden bg-slate-100 group cursor-pointer">
-             <img src={answer.videoThumbnail} alt="Video thumbnail" className="w-full h-full object-cover" />
-             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-               <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                 <Play className="h-5 w-5 text-slate-900 ml-1" />
+           <div className="relative aspect-video rounded-lg overflow-hidden bg-slate-100 group cursor-pointer mt-3 mb-4 border border-slate-100">
+             <img src={answer.videoThumbnail} alt="Video thumbnail" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+               <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform backdrop-blur-sm">
+                 <Play className="h-6 w-6 text-slate-900 ml-1 fill-slate-900" />
                </div>
              </div>
-             <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/60 rounded text-[10px] text-white font-medium">
+             <div className="absolute bottom-3 left-3 px-2 py-1 bg-black/70 backdrop-blur-md rounded text-[10px] text-white font-medium">
                0:16
              </div>
            </div>
