@@ -9,6 +9,7 @@ export default function Navigation() {
   useEffect(() => {
     if (location === "/") setActiveTab("Student Life Feed");
     else if (location.startsWith("/qa")) setActiveTab("Student Q&A");
+    else if (location.startsWith("/dreamwall")) setActiveTab("Dreamwall");
     else setActiveTab("");
   }, [location]);
 
@@ -16,7 +17,7 @@ export default function Navigation() {
     { name: "Community Groups", path: "#" },
     { name: "Student Life Feed", path: "/" },
     { name: "Student Q&A", path: "/qa" },
-    { name: "Find friends", path: "#" },
+    { name: "Dreamwall", path: "/dreamwall" },
     { name: "Inbox", path: "#" }
   ];
 

@@ -11,6 +11,7 @@ import QADetail from "@/pages/qa-detail";
 import AmbassadorProfile from "@/pages/ambassador-profile";
 import UniversityProfile from "@/pages/university-profile";
 import UniversityAmbassadors from "@/pages/university-ambassadors";
+import Dreamwall from "@/pages/dreamwall";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/post/:id" component={Post} />
       <Route path="/qa" component={QAList} />
       <Route path="/qa/:id" component={QADetail} />
+      <Route path="/dreamwall" component={Dreamwall} />
       <Route path="/ambassador/:id" component={AmbassadorProfile} />
       <Route path="/university/:id" component={UniversityProfile} />
       <Route path="/university/:id/ambassadors" component={UniversityAmbassadors} />

@@ -1,9 +1,10 @@
-import { Heart, ArrowRight } from "lucide-react";
+import { Heart, ArrowRight, Bookmark } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 interface FeedCardProps {
   id: string;
@@ -19,6 +20,14 @@ interface FeedCardProps {
 export default function FeedCard({ id, author, school, time, image, title, avatarUrl, likes: initialLikes }: FeedCardProps) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(initialLikes);
+  const [saved, setSaved] = useState(false);
+  const { toast } = useToast();
+
+  // Load saved state from localStorage
+  useEffect(() => {
+    const savedPosts = JSON.parse(localStorage.getItem("saved_posts") || "[]");
+    setSaved(savedPosts.includes(id));
+  }, [id]);
 
   const handleLike = () => {
     if (liked) {
@@ -27,6 +36,34 @@ export default function FeedCard({ id, author, school, time, image, title, avata
     } else {
       setLikeCount(prev => prev + 1);
       setLiked(true);
+    }
+  };
+
+  const handleSave = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent navigating if clicking the bookmark
+    e.preventDefault();
+
+    const savedPosts = JSON.parse(localStorage.getItem("saved_posts") || "[]");
+    
+    if (saved) {
+      // Remove from saved
+      const newSaved = savedPosts.filter((postId: string) => postId !== id);
+      localStorage.setItem("saved_posts", JSON.stringify(newSaved));
+      setSaved(false);
+      toast({
+        title: "Removed from Dreamwall",
+        description: "Post has been removed from your saved collection.",
+      });
+    } else {
+      // Add to saved
+      savedPosts.push(id);
+      localStorage.setItem("saved_posts", JSON.stringify(savedPosts));
+      setSaved(true);
+      toast({
+        title: "Added to Dreamwall",
+        description: "Post saved! Check your Dreamwall to see your collection.",
+        duration: 3000,
+      });
     }
   };
 
@@ -83,6 +120,15 @@ export default function FeedCard({ id, author, school, time, image, title, avata
             </span>
           </div>
         </Link>
+
+        {/* Save Button - Top Right */}
+        <motion.button
+          onClick={handleSave}
+          whileTap={{ scale: 0.9 }}
+          className="absolute top-3 right-3 p-2 rounded-full bg-black/20 backdrop-blur-sm hover:bg-black/40 transition-colors z-10 border border-white/10"
+        >
+          <Bookmark className={`h-5 w-5 ${saved ? "fill-white text-white" : "text-white"}`} />
+        </motion.button>
       </div>
 
       {/* Footer */}
