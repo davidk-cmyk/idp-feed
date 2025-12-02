@@ -50,9 +50,11 @@ export default function FeedCard({ id, author, school, time, image, title, avata
               {author}
             </span>
           </Link>
-          <span className="text-[11px] text-[#3b66f5] font-medium mt-0.5">
-            {school}
-          </span>
+          <Link href="/university/1">
+            <span className="text-[11px] text-[#3b66f5] font-medium mt-0.5 cursor-pointer hover:underline">
+              {school}
+            </span>
+          </Link>
           <span className="text-[10px] text-slate-400 mt-0.5">
             {time}
           </span>

@@ -102,7 +102,7 @@ export default function AmbassadorProfile() {
 
                <div className="space-y-4 max-w-2xl mx-auto md:mx-0">
                  <p className="text-slate-600 leading-relaxed">
-                   Hi there! Namaste! 🙏 I'm Aastha, an international student from Nepal loving life on the Gold Coast. I chose Kaplan for its flexible MBA program and supportive community.
+                   Hi there! Namaste! 🙏 I'm Aastha, an international student from Nepal loving life on the Gold Coast. I chose <Link href="/university/1" className="text-[#3b66f5] font-semibold hover:underline">Kaplan</Link> for its flexible MBA program and supportive community.
                  </p>
                  <p className="text-slate-600 leading-relaxed">
                    I'm currently working part-time as a barista while studying, and I love exploring the local beaches on weekends! 🌊☕️
