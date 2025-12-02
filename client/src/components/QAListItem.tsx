@@ -40,16 +40,18 @@ export default function QAListItem({ id, category, time, question, answerCount, 
         
         <div className="flex flex-wrap items-center gap-4">
            {answerers.map((person, idx) => (
-             <div key={idx} className="flex items-center gap-3 group cursor-pointer">
-               <Avatar className="h-8 w-8 border border-slate-100">
-                 <AvatarImage src={person.avatar} alt={person.name} />
-                 <AvatarFallback>{person.name[0]}</AvatarFallback>
-               </Avatar>
-               <div className="flex flex-col">
-                  <span className="text-sm font-semibold text-slate-900 group-hover:text-[#3b66f5] transition-colors leading-none">{person.name}</span>
-                  <span className="text-xs text-slate-400 leading-none mt-1 truncate max-w-[120px]">{person.school}</span>
+             <Link key={idx} href="/ambassador/1">
+               <div className="flex items-center gap-3 group cursor-pointer">
+                 <Avatar className="h-8 w-8 border border-slate-100">
+                   <AvatarImage src={person.avatar} alt={person.name} />
+                   <AvatarFallback>{person.name[0]}</AvatarFallback>
+                 </Avatar>
+                 <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-slate-900 group-hover:text-[#3b66f5] transition-colors leading-none">{person.name}</span>
+                    <span className="text-xs text-slate-400 leading-none mt-1 truncate max-w-[120px]">{person.school}</span>
+                 </div>
                </div>
-             </div>
+             </Link>
            ))}
            {answerCount > answerers.length && (
              <div className="flex items-center justify-center h-8 px-3 bg-slate-100/50 rounded-full text-xs font-medium text-slate-500 hover:bg-slate-100 transition-colors cursor-pointer">

@@ -58,16 +58,18 @@ export default function QAFeaturedCard({ id, category, time, question, answer }:
 
          {/* Author */}
          <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center gap-3">
-              <Avatar className="h-10 w-10 border border-slate-100">
-                <AvatarImage src={answer.avatar} alt={answer.author} />
-                <AvatarFallback>{answer.author[0]}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col">
-                 <span className="text-sm font-bold text-slate-900">{answer.author}</span>
-                 <span className="text-xs text-slate-500">{answer.school}</span>
+            <Link href="/ambassador/1">
+              <div className="flex items-center gap-3 cursor-pointer group">
+                <Avatar className="h-10 w-10 border border-slate-100 group-hover:ring-2 ring-[#3b66f5] ring-offset-1 transition-all">
+                  <AvatarImage src={answer.avatar} alt={answer.author} />
+                  <AvatarFallback>{answer.author[0]}</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                   <span className="text-sm font-bold text-slate-900 group-hover:text-[#3b66f5] transition-colors">{answer.author}</span>
+                   <span className="text-xs text-slate-500">{answer.school}</span>
+                </div>
               </div>
-            </div>
+            </Link>
             <Link href={`/qa/${id}`}>
                 <Button variant="ghost" size="sm" className="text-[#3b66f5] hover:bg-blue-50 gap-1">
                   Read more <ArrowRight className="h-4 w-4" />
@@ -76,21 +78,23 @@ export default function QAFeaturedCard({ id, category, time, question, answer }:
          </div>
          
          {/* University CTA */}
-         <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100 mt-4">
-            <div className="flex items-center gap-3">
-               <div className="w-8 h-8 bg-white rounded-md border border-slate-200 flex items-center justify-center p-1">
-                 <span className="text-[10px] font-bold text-slate-700 text-center leading-none">Bond</span>
-               </div>
-               <div className="flex flex-col">
-                  <span className="text-[10px] text-slate-500 uppercase font-semibold">Explore courses at</span>
-                  <span className="text-xs font-bold text-slate-900">{answer.school}</span>
-               </div>
-            </div>
-            <Button size="sm" variant="outline" className="h-8 rounded-full text-[#3b66f5] border-[#3b66f5] hover:bg-blue-50 text-xs font-bold px-4">
-               Visit
-               <ArrowRight className="h-3 w-3 ml-1" />
-            </Button>
-         </div>
+         <Link href="/university/1">
+           <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100 mt-4 cursor-pointer hover:border-blue-200 hover:bg-blue-50/50 transition-all group">
+              <div className="flex items-center gap-3">
+                 <div className="w-8 h-8 bg-white rounded-md border border-slate-200 flex items-center justify-center p-1">
+                   <span className="text-[10px] font-bold text-slate-700 text-center leading-none">Bond</span>
+                 </div>
+                 <div className="flex flex-col">
+                    <span className="text-[10px] text-slate-500 uppercase font-semibold">Explore courses at</span>
+                    <span className="text-xs font-bold text-slate-900 group-hover:text-[#3b66f5] transition-colors">{answer.school}</span>
+                 </div>
+              </div>
+              <Button size="sm" variant="outline" className="h-8 rounded-full text-[#3b66f5] border-[#3b66f5] hover:bg-blue-50 text-xs font-bold px-4">
+                 Visit
+                 <ArrowRight className="h-3 w-3 ml-1" />
+              </Button>
+           </div>
+         </Link>
       </div>
     </div>
   );

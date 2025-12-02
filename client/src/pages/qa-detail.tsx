@@ -49,13 +49,19 @@ export default function QADetail() {
              <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 md:p-8">
                {/* Author */}
                <div className="flex items-center gap-3 mb-6">
-                  <Avatar className="h-12 w-12 border border-slate-100">
-                    <AvatarImage src="https://i.pravatar.cc/150?u=victoria" alt="Victoria Xu" />
-                    <AvatarFallback>VX</AvatarFallback>
-                  </Avatar>
+                  <Link href="/ambassador/1">
+                    <Avatar className="h-12 w-12 border border-slate-100 cursor-pointer hover:ring-2 ring-[#3b66f5] ring-offset-2 transition-all">
+                      <AvatarImage src="https://i.pravatar.cc/150?u=victoria" alt="Victoria Xu" />
+                      <AvatarFallback>VX</AvatarFallback>
+                    </Avatar>
+                  </Link>
                   <div className="flex flex-col">
-                     <span className="text-base font-bold text-slate-900">Victoria Xu</span>
-                     <span className="text-xs text-[#3b66f5] font-medium">University of Wollongong</span>
+                     <Link href="/ambassador/1">
+                       <span className="text-base font-bold text-slate-900 hover:text-[#3b66f5] cursor-pointer transition-colors">Victoria Xu</span>
+                     </Link>
+                     <Link href="/university/1">
+                       <span className="text-xs text-[#3b66f5] font-medium hover:underline cursor-pointer">University of Wollongong</span>
+                     </Link>
                      <span className="text-[10px] text-slate-400 mt-0.5">6 days ago</span>
                   </div>
                </div>
@@ -74,22 +80,24 @@ export default function QADetail() {
                </div>
 
                {/* University CTA */}
-               <div className="flex items-center justify-between bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-white rounded-lg border border-slate-200 flex items-center justify-center p-1">
-                       <img src="https://logo.clearbit.com/uow.edu.au" alt="UOW Logo" className="w-full h-full object-contain opacity-80" onError={(e) => {e.currentTarget.style.display='none'}} />
-                       <span className="text-[10px] font-bold text-slate-700 text-center leading-none" style={{display: 'none'}}>UOW</span> 
-                     </div>
-                     <div className="flex flex-col">
-                        <span className="text-[10px] text-slate-500 uppercase font-semibold tracking-wide">Explore courses at</span>
-                        <span className="text-sm font-bold text-slate-900">University of Wollongong</span>
-                     </div>
-                  </div>
-                  <Button size="sm" className="rounded-full bg-white text-[#3b66f5] border border-[#3b66f5] hover:bg-blue-50 font-bold px-6 shadow-sm">
-                     Visit
-                     <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
-                  </Button>
-               </div>
+               <Link href="/university/1">
+                 <div className="flex items-center justify-between bg-slate-50 rounded-xl p-4 border border-slate-100 cursor-pointer hover:bg-blue-50/50 hover:border-blue-200 transition-all group">
+                    <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 bg-white rounded-lg border border-slate-200 flex items-center justify-center p-1">
+                         <img src="https://logo.clearbit.com/uow.edu.au" alt="UOW Logo" className="w-full h-full object-contain opacity-80" onError={(e) => {e.currentTarget.style.display='none'}} />
+                         <span className="text-[10px] font-bold text-slate-700 text-center leading-none" style={{display: 'none'}}>UOW</span> 
+                       </div>
+                       <div className="flex flex-col">
+                          <span className="text-[10px] text-slate-500 uppercase font-semibold tracking-wide">Explore courses at</span>
+                          <span className="text-sm font-bold text-slate-900 group-hover:text-[#3b66f5] transition-colors">University of Wollongong</span>
+                       </div>
+                    </div>
+                    <Button size="sm" className="rounded-full bg-white text-[#3b66f5] border border-[#3b66f5] hover:bg-blue-50 font-bold px-6 shadow-sm">
+                       Visit
+                       <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+                    </Button>
+                 </div>
+               </Link>
              </div>
            </div>
 
