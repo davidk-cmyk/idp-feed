@@ -7,6 +7,7 @@ import { MapPin, GraduationCap, Globe, Coffee, Sun, MessageCircle } from "lucide
 import { motion, AnimatePresence } from "framer-motion";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 
 export default function AmbassadorProfile() {
   const [showSticky, setShowSticky] = useState(false);
