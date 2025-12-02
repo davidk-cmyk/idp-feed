@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ToastAction } from "@/components/ui/toast";
 
 interface FeedCardProps {
   id: string;
@@ -63,6 +65,11 @@ export default function FeedCard({ id, author, school, time, image, title, avata
         title: "Added to Dreamwall",
         description: "Post saved! Check your Dreamwall to see your collection.",
         duration: 3000,
+        action: (
+          <Link href="/dreamwall">
+            <ToastAction altText="View Dreamwall">View</ToastAction>
+          </Link>
+        ),
       });
     }
   };
@@ -125,55 +132,69 @@ export default function FeedCard({ id, author, school, time, image, title, avata
       {/* Footer */}
       <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <motion.button
-            onClick={handleLike}
-            whileTap={{ scale: 0.95 }}
-            className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
-              liked 
-                ? "bg-red-50 text-red-600 border-red-100" 
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
-            }`}
-          >
-            <AnimatePresence mode="wait">
-              {liked ? (
-                <motion.div
-                  key="filled"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                >
-                  <Heart className="h-4 w-4 fill-current" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="outline"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                >
-                  <Heart className="h-4 w-4" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
-              {liked ? "Liked" : "Like"}
-            </span>
-          </motion.button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button
+                onClick={handleLike}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
+                  liked 
+                    ? "bg-red-50 text-red-600 border-red-100" 
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+                }`}
+              >
+                <AnimatePresence mode="wait">
+                  {liked ? (
+                    <motion.div
+                      key="filled"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      <Heart className="h-4 w-4 fill-current" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="outline"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      <Heart className="h-4 w-4" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
+                  {liked ? "Liked" : "Like"}
+                </span>
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Like this post</p>
+            </TooltipContent>
+          </Tooltip>
 
-          <motion.button
-            onClick={handleSave}
-            whileTap={{ scale: 0.95 }}
-            className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
-              saved
-                ? "bg-purple-50 text-purple-600 border-purple-100"
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
-            }`}
-          >
-            <Bookmark className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
-            <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
-              {saved ? "Saved" : "Save"}
-            </span>
-          </motion.button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button
+                onClick={handleSave}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
+                  saved
+                    ? "bg-purple-50 text-purple-600 border-purple-100"
+                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
+                }`}
+              >
+                <Bookmark className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
+                <span className="text-xs font-semibold whitespace-nowrap hidden sm:inline">
+                  {saved ? "Saved" : "Save"}
+                </span>
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{saved ? "Remove from Dreamwall" : "Save to your Dreamwall"}</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
         
         <Link href={`/post/${id}`}>
@@ -189,3 +210,4 @@ export default function FeedCard({ id, author, school, time, image, title, avata
     </motion.div>
   );
 }
+
