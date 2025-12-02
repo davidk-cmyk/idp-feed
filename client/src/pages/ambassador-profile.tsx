@@ -3,7 +3,7 @@ import FeedCard from "@/components/FeedCard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, GraduationCap, Globe, Coffee, Sun, MessageCircle } from "lucide-react";
+import { MapPin, GraduationCap, Globe, Coffee, Sun, MessageCircle, ArrowRight, Building2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import generatedImage from "@assets/generated_images/student_ambassador_at_gold_coast_campus.png";
 import { useState, useEffect } from "react";
@@ -54,6 +54,13 @@ export default function AmbassadorProfile() {
     }
   ];
 
+  const otherAmbassadors = [
+    { name: "Antonella", avatar: "https://i.pravatar.cc/150?u=antonella", country: "🇦🇷" },
+    { name: "Stephen", avatar: "https://i.pravatar.cc/150?u=stephen", country: "🇬🇧" },
+    { name: "Maria", avatar: "https://i.pravatar.cc/150?u=maria", country: "🇪🇸" },
+    { name: "John", avatar: "https://i.pravatar.cc/150?u=john", country: "🇺🇸" },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans">
       <Navigation />
@@ -96,14 +103,14 @@ export default function AmbassadorProfile() {
                     MBA (Global)
                  </div>
                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    Active now
+                    <Building2 className="h-4 w-4 text-slate-400" />
+                    <Link href="/university/1" className="text-[#3b66f5] hover:underline font-medium">Kaplan Business School</Link>
                  </div>
                </div>
 
                <div className="space-y-4 max-w-2xl mx-auto md:mx-0">
                  <p className="text-slate-600 leading-relaxed">
-                   Hi there! Namaste! 🙏 I'm Aastha, an international student from Nepal loving life on the Gold Coast. I chose <Link href="/university/1" className="text-[#3b66f5] font-semibold hover:underline">Kaplan</Link> for its flexible MBA program and supportive community.
+                   Hi there! Namaste! 🙏 I'm Aastha, an international student from Nepal loving life on the Gold Coast. I chose <Link href="/university/1" className="text-[#3b66f5] font-semibold hover:underline">Kaplan Business School</Link> for its flexible MBA program and supportive community.
                  </p>
                  <p className="text-slate-600 leading-relaxed">
                    I'm currently working part-time as a barista while studying, and I love exploring the local beaches on weekends! 🌊☕️
@@ -136,17 +143,55 @@ export default function AmbassadorProfile() {
           </div>
         </div>
 
-        {/* Content Grid */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2 pb-4 border-b border-slate-200">
-             <h2 className="text-lg font-bold text-slate-900">Posts by Aastha</h2>
-             <Badge variant="secondary" className="bg-slate-100 text-slate-600">{posts.length}</Badge>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Feed */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="flex items-center gap-2 pb-4 border-b border-slate-200">
+               <h2 className="text-lg font-bold text-slate-900">Posts by Aastha</h2>
+               <Badge variant="secondary" className="bg-slate-100 text-slate-600">{posts.length}</Badge>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6">
+              {posts.map((post) => (
+                <FeedCard key={post.id} {...post} />
+              ))}
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-            {posts.map((post) => (
-              <FeedCard key={post.id} {...post} />
-            ))}
+
+          {/* Sidebar: Other Ambassadors */}
+          <div className="lg:col-span-1">
+            <div className="bg-slate-50 rounded-xl border border-slate-100 p-6 sticky top-4">
+              <h3 className="font-bold text-slate-900 mb-4">More from Kaplan Business School</h3>
+              
+              <div className="space-y-4 mb-4">
+                {otherAmbassadors.map((amb, idx) => (
+                  <Link key={idx} href="/ambassador/1">
+                    <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-white hover:shadow-sm transition-all cursor-pointer group">
+                      <div className="relative">
+                        <Avatar className="h-10 w-10 border border-slate-200">
+                          <AvatarImage src={amb.avatar} alt={amb.name} />
+                          <AvatarFallback>{amb.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full shadow-sm border border-slate-100 text-[10px]">
+                          {amb.country}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-sm font-semibold text-slate-900 group-hover:text-[#3b66f5] transition-colors">{amb.name}</div>
+                        <div className="text-xs text-slate-500">Student Ambassador</div>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-[#3b66f5] transition-colors" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              <Link href="/university/1/ambassadors">
+                <Button variant="outline" className="w-full bg-white border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold">
+                  View all ambassadors
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
